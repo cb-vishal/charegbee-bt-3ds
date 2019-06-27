@@ -6,8 +6,11 @@ if (isset($_POST['amount']) && isset($_POST['nonce'])) {
     
      $paymentMethodNonce = Braintree_PaymentMethodNonce::find($_POST['nonce']);
   echo "Nonce details: ";
+  echo "<br>";
    print_r(json_encode($paymentMethodNonce));
-   echo "\n";
+   echo "<br>";
+   echo "<br>";
+
 
     $result = Braintree_Transaction::sale([
         'amount' => $_POST['amount'],
@@ -24,8 +27,9 @@ if (isset($_POST['amount']) && isset($_POST['nonce'])) {
     ]);
 
     if ($result->success) {
-        echo "Success\n";
+      
         echo "Transaction details";
+        echo "<br>";
        print_r(json_encode($result));
         /**
          * submit for settlement after success:
